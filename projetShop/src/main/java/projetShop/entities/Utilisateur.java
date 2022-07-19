@@ -25,6 +25,8 @@ public abstract class Utilisateur {
 	private Long id;
 	@Column(name = "password")
 	private String password;
+	@Column(name="Username")
+	private String Username;
 	
 	public Utilisateur() {
 		
@@ -34,14 +36,21 @@ public abstract class Utilisateur {
 		
 	}
 	
-	public Utilisateur(String password) {
+	public Utilisateur(String password,String Username) {
 		this.password = password;
+		this.Username=Username;
 	}
 	protected Long getId() {
 		return id;
 	}
 	protected void setId(Long id) {
 		this.id = id;
+	}
+	protected String getUsername() {
+		return Username;
+	}
+	protected void setUsername(String username) {
+		Username = username;
 	}
 	protected String getPassword() {
 		return password;

@@ -22,7 +22,7 @@ import javax.persistence.Table;
 		
 public class Client extends Utilisateur{
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqClient")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUtilisateur")
 	@Column(name="nom")
 	private String nom;
 	@Column(name="prenom")
