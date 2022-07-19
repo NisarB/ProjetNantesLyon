@@ -1,2 +1,10 @@
 
 target/
+
+.settings/
+
+bin/
+
+.classpath
+
+.project
