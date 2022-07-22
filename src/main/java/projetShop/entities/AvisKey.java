@@ -3,14 +3,29 @@ package projetShop.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Embeddable;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Embeddable
 public class AvisKey implements Serializable {
-	private Client client;
-	private Article article;
 	
+	@ManyToOne
+	@JoinColumn(name="avis_client_id",foreignKey = @ForeignKey(name="avis_client_id_fk"))
+	private Client client;
+	@ManyToOne
+	@JoinColumn(name="avis_article_id",foreignKey = @ForeignKey(name="avis_Article_id_fk"))
+	private Article article;
+
 	public AvisKey() {
 	}
 
-	
+	public AvisKey(Client client, Article article) {
+		this.client = client;
+		this.article = article;
+	}
+
 	public Client getClient() {
 		return client;
 	}
@@ -43,9 +58,5 @@ public class AvisKey implements Serializable {
 		AvisKey other = (AvisKey) obj;
 		return Objects.equals(article, other.article) && Objects.equals(client, other.client);
 	}
-	
-	
-	
-	
 
 }

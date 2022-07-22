@@ -2,20 +2,33 @@ package projetShop.entities;
 
 import java.util.Objects;
 
-public class Avis {
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "avis")
+public class Avis {
+	@EmbeddedId
 	private AvisKey id;
+	@Column(name = "avis_article")
 	private String avis;
+	@Column(name = "note_article")
 	private double note;
-	
+
 	public Avis() {
 	}
-	
+
+	public Avis(AvisKey id, String avis, double note) {
+		this.id = id;
+		this.avis = avis;
+		this.note = note;
+	}
 
 	public AvisKey getId() {
 		return id;
 	}
-
 
 	public String getAvis() {
 		return avis;
@@ -49,7 +62,5 @@ public class Avis {
 		Avis other = (Avis) obj;
 		return Objects.equals(avis, other.avis);
 	}
-	
-	
-	
+
 }

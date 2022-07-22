@@ -13,13 +13,22 @@ import javax.persistence.Table;
 
 @MappedSuperclass
 public abstract class Utilisateur {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUtilisateur")
 	private Long id;
+
+	@Column(nullable = false)
 	private String username;
 	
+	@Column(nullable = false)
 	private String password;
 
 	public Utilisateur() {
+	}
+
+	public Utilisateur(String username, String password) {
+		this.username = username;
+		this.password = password;
 	}
 
 	public String getPassword() {
