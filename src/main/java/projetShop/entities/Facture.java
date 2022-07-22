@@ -7,5 +7,4 @@ public class Facture {
 	private double tva ;
 	private TypePaiment typePaiement;
 	private double remise;
-	private Client client;
 }

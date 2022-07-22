@@ -13,45 +13,39 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "commande")
 @SequenceGenerator(name = "seqCommande", sequenceName = "seq_commande", initialValue = 100, allocationSize = 1)
-@NamedQueries({})
 
 public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCommande")
 	@Column(name = "id_commande")
 	private Long id_com;
+
 	@Column(name = "date_commande")
 	private LocalDate date_com;
+
 	@ManyToOne
 	@JoinColumn(name = "commande_id_client", foreignKey = @ForeignKey(name = "commande_id_client_fk"))
 	private Client client;
+
 	@OneToMany(mappedBy = "id.commande")
 	private Set<ListeArticle> articles;
+
 	@Embedded
 	private Facture facture;
 
+	@Version
+	private long version;
+
 	public Commande() {
-	}
 
-	public Commande(LocalDate date_com, Client client, Set<ListeArticle> articles, Facture facture) {
-		this.date_com = date_com;
-		this.client = client;
-		this.articles = articles;
-		this.facture = facture;
-	}
-
-	public void passerCommande() {
-	}
-
-	public void annulerCommande() {
 	}
 
 	public Long getId_com() {
@@ -70,6 +64,14 @@ public class Commande {
 		this.date_com = date_com;
 	}
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	public Set<ListeArticle> getArticles() {
 		return articles;
 	}
@@ -84,6 +86,14 @@ public class Commande {
 
 	public void setFacture(Facture facture) {
 		this.facture = facture;
+	}
+
+	public long getVersion() {
+		return version;
+	}
+
+	public void setVersion(long version) {
+		this.version = version;
 	}
 
 	@Override

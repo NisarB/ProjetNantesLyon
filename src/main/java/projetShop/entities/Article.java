@@ -16,7 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Article")
+@Table(name = "article")
 @SequenceGenerator(name = "seqArticle", sequenceName = "seq_article", initialValue = 100, allocationSize = 1)
 @NamedQueries({})
 public class Article {
