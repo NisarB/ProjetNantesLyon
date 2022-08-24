@@ -9,23 +9,23 @@ import javax.persistence.Table;
 @Table(name = "liste_article")
 public class ListeArticle {
 	@EmbeddedId
-	private ListeArticlekey id;
+	private ListeArticleKey id;
 	@Column(name = "liste_article_quantite")
 	private int quantite;
 
 	public ListeArticle() {
 	}
 
-	public ListeArticle(ListeArticlekey id, int quantite) {
+	public ListeArticle(ListeArticleKey id, int quantite) {
 		this.id = id;
 		this.quantite = quantite;
 	}
 
-	public ListeArticlekey getId() {
+	public ListeArticleKey getId() {
 		return id;
 	}
 
-	public void setId(ListeArticlekey id) {
+	public void setId(ListeArticleKey id) {
 		this.id = id;
 	}
 

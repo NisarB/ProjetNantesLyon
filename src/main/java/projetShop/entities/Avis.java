@@ -10,10 +10,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "avis")
 public class Avis {
+	
 	@EmbeddedId
 	private AvisKey id;
+	
 	@Column(name = "avis_article")
 	private String avis;
+	
 	@Column(name = "note_article")
 	private double note;
 
@@ -62,5 +65,7 @@ public class Avis {
 		Avis other = (Avis) obj;
 		return Objects.equals(avis, other.avis);
 	}
+
+	
 
 }

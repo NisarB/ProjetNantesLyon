@@ -43,13 +43,23 @@ public class Article {
 	public Article() {
 	}
 
-	public void ajouterAvis() {
+	
+	public Article(String nom, double prix, Categorie categorie) {
+		this.nom = nom;
+		this.prix = prix;
+		this.categorie = categorie;
+	}
+
+
+	public void ajouterAvis(Avis avis) {
+		this.avis.add(avis);
 	}
 
 	public void supprimerAvis() {
+		
 	}
 
-	public Long getId_prod() {
+	public Long getId() {
 		return id;
 	}
 

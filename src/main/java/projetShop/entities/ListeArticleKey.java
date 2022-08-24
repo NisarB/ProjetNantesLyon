@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class ListeArticlekey implements Serializable {
+public class ListeArticleKey implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "liste_article_commande_id", foreignKey = @ForeignKey(name = "liste_article_commande_id_fk"))
 	private Commande commande;
@@ -17,10 +17,10 @@ public class ListeArticlekey implements Serializable {
 	@JoinColumn(name = "liste_article_article_id", foreignKey = @ForeignKey(name = "liste_article_article_id_fk"))
 	private Article article;
 
-	public ListeArticlekey() {
+	public ListeArticleKey() {
 	}
 
-	public ListeArticlekey(Commande commande, Article article) {
+	public ListeArticleKey(Commande commande, Article article) {
 		this.commande = commande;
 		this.article = article;
 	}
@@ -54,7 +54,7 @@ public class ListeArticlekey implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ListeArticlekey other = (ListeArticlekey) obj;
+		ListeArticleKey other = (ListeArticleKey) obj;
 		return Objects.equals(article, other.article) && Objects.equals(commande, other.commande);
 	}
 

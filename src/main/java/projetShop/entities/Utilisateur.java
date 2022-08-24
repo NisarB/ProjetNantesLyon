@@ -3,13 +3,10 @@ package projetShop.entities;
 import java.util.Objects;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @MappedSuperclass
 public abstract class Utilisateur {
@@ -24,6 +21,14 @@ public abstract class Utilisateur {
 	private String password;
 
 	public Utilisateur() {
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Utilisateur(String username, String password) {

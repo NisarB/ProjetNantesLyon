@@ -26,10 +26,10 @@ public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCommande")
 	@Column(name = "id_commande")
-	private Long id_com;
+	private Long id;
 
 	@Column(name = "date_commande")
-	private LocalDate date_com;
+	private LocalDate date;
 
 	@ManyToOne
 	@JoinColumn(name = "commande_id_client", foreignKey = @ForeignKey(name = "commande_id_client_fk"))
@@ -47,21 +47,30 @@ public class Commande {
 	public Commande() {
 
 	}
-
-	public Long getId_com() {
-		return id_com;
+	
+	public Commande(Long id, LocalDate date, Client client, Set<ListeArticle> articles, Facture facture, long version) {
+		this.id = id;
+		this.date = date;
+		this.client = client;
+		this.articles = articles;
+		this.facture = facture;
+		this.version = version;
 	}
 
-	public void setId_com(Long id_com) {
-		this.id_com = id_com;
+	public Long getId() {
+		return id;
 	}
 
-	public LocalDate getDate_com() {
-		return date_com;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setDate_com(LocalDate date_com) {
-		this.date_com = date_com;
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
 	public Client getClient() {
@@ -98,7 +107,7 @@ public class Commande {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id_com);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -110,7 +119,7 @@ public class Commande {
 		if (getClass() != obj.getClass())
 			return false;
 		Commande other = (Commande) obj;
-		return Objects.equals(id_com, other.id_com);
+		return Objects.equals(id, other.id);
 	}
 
 }

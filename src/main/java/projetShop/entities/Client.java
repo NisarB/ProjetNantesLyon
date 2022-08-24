@@ -30,9 +30,29 @@ public class Client extends Utilisateur {
 	@Column(name = "tel_client")
 	private String tel;
 
+	@AttributeOverrides({ 
+			@AttributeOverride(name = "numero", column = @Column(name = "numero_client", length = 50)),
+			@AttributeOverride(name = "rue", column = @Column(name = "rue_client", length = 255)),
+			@AttributeOverride(name = "codePostal", column = @Column(name = "CP_client", length = 50)),
+			@AttributeOverride(name = "ville", column = @Column(name = "ville_client", length = 255)) })
+	@Embedded
+	private Adresse adresse;
+	
 	@OneToMany(mappedBy = "client")
 	private Set<Commande> commandes;
 
+	@Version
+	private long version;
+
+	public Client() {
+
+	}
+	
+	public Client(String nom, String prenom) {
+		this.nom = nom;
+		this.prenom = prenom;
+	}
+	
 	public Set<Commande> getCommandes() {
 		return commandes;
 	}
@@ -47,20 +67,6 @@ public class Client extends Utilisateur {
 
 	public void setVersion(long version) {
 		this.version = version;
-	}
-
-	@AttributeOverrides({ @AttributeOverride(name = "numero", column = @Column(name = "numero_client", length = 50)),
-			@AttributeOverride(name = "rue", column = @Column(name = "rue_client", length = 255)),
-			@AttributeOverride(name = "codePostal", column = @Column(name = "CP_client", length = 50)),
-			@AttributeOverride(name = "ville", column = @Column(name = "ville_client", length = 255)) })
-	@Embedded
-	private Adresse adresse;
-
-	@Version
-	private long version;
-
-	public Client() {
-
 	}
 
 	public String getNom() {
