@@ -1,0 +1,18 @@
+.low-stock {
+    background-color: indianred;
+}
+
+.empty-stock {
+    background-color: red;
+}
+
+
+
+.table {
+    text-align: center;
+}
+
+
+.table tbody {
+    vertical-align: middle;
+}

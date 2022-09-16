@@ -1,6 +1,41 @@
 import { Routes } from '@angular/router';
+import { AdminEditComponent } from './components/admin/admin-edit/admin-edit.component';
+import { AdminListComponent } from './components/admin/admin-list/admin-list.component';
+import { ArticleEditComponent } from './components/article/edit/article-edit.component';
+import { ArticleListComponent } from './components/article/list/article-list.component';
+import { ArticlePageComponent } from './components/article/page/article-page.component';
+import { AvisAddComponent } from './components/avis/add/avis-add/avis-add.component';
+import { AvisListComponent } from './components/avis/list/avis-list/avis-list.component';
+import { CatalogueComponent } from './components/catalogue/catalogue.component';
+import { ClientEditComponent } from './components/client/client-edit/client-edit.component';
+import { ClientListComponent } from './components/client/client-list/client-list.component';
+import { ProfilClientComponent } from './components/client/profil-client/profil-client.component';
+import { CommandeComponent } from './components/commande/commande.component';
+import { HomeComponent } from './components/home/home.component';
+import { LogoutComponent } from './components/logout/logout.component';
 import { InscriptionComponent } from './forms/inscription/inscription.component';
+import { LoginComponent } from './forms/login/login.component';
 
 export const routes: Routes = [
-    { path: "inscription", component: InscriptionComponent }
+    { path: "", component: HomeComponent },
+    { path: "home", component: HomeComponent },
+    { path: "catalogue", component: CatalogueComponent },
+    { path: "catalogue/:ckey", component: CatalogueComponent },
+    { path: "article/:id", component: ArticlePageComponent },
+    { path: "article-list", component: ArticleListComponent },
+    { path: "article-add", component: ArticleEditComponent },
+    { path: "article-edit/:id", component: ArticleEditComponent },
+    { path: "inscription", component: InscriptionComponent },
+    { path: "login", component: LoginComponent },
+    { path: "login/:signed", component: LoginComponent },
+    { path: 'admin/add', component: AdminEditComponent },
+    { path: 'admin/edit/:id', component: AdminEditComponent },
+    { path: 'clients', component: ClientListComponent },
+    { path: 'client/add', component: ClientEditComponent },
+    { path: 'client/edit/:id', component: ClientEditComponent },
+    { path: 'profile', component: ProfilClientComponent },
+    { path: 'profile/edit/:id', component: ClientEditComponent },
+    { path: 'logout', component: LogoutComponent },
+    { path: 'commande', component: CommandeComponent }
+
 ]

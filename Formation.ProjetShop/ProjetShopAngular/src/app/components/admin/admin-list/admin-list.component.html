@@ -1,0 +1,18 @@
+<table class="table">
+  <tr *ngFor="let a of admins">
+    <td>{{ a.id }}</td>
+    <td>{{ a.username }}</td>
+   <td>
+    <a
+    routerLink="/client/edit/{{ a.id }}"
+    class="btn btn-outline-primary">editer</a>
+    </td>
+    <td>
+      <button (click)="delete(a.id!)" class="btn btn-outline-danger">
+        supprimer
+      </button>
+    </td>
+  </tr>
+</table>
+<a routerLink="/admin/add" class="btn btn-link">nouvel admin</a>
+

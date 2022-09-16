@@ -22,21 +22,22 @@ import com.fasterxml.jackson.annotation.JsonView;
 @NamedQueries({})
 public class Article {
 
-	@JsonView({ JsonViews.Avis.class, JsonViews.ListeArticle.class, JsonViews.Article.class })
+	@JsonView({ JsonViews.Avis.class, JsonViews.ListeArticle.class, JsonViews.Article.class,
+			JsonViews.Base.class })
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqArticle")
 	@Column(name = "id_article")
 	private Long id;
 
-	@JsonView({ JsonViews.Avis.class, JsonViews.ListeArticle.class, JsonViews.Article.class })
+	@JsonView({ JsonViews.Avis.class, JsonViews.ListeArticle.class, JsonViews.Article.class, JsonViews.Commande.class })
 	@Column(name = "nom_article", length = 150)
 	private String nom;
 
-	@JsonView({ JsonViews.Avis.class, JsonViews.Article.class })
+	@JsonView({ JsonViews.Avis.class, JsonViews.Article.class, JsonViews.Base.class })
 	@Column(name = "description_article", columnDefinition = "TEXT")
 	private String description;
 
-	@JsonView({ JsonViews.Avis.class, JsonViews.ListeArticle.class, JsonViews.Article.class })
+	@JsonView({ JsonViews.Avis.class, JsonViews.ListeArticle.class, JsonViews.Article.class, JsonViews.Commande.class })
 	@Column(name = "prix_article")
 	private double prix;
 
@@ -52,7 +53,7 @@ public class Article {
 	@Enumerated(EnumType.STRING)
 	private Categorie categorie;
 
-	@JsonView({ JsonViews.Avis.class, JsonViews.Article.class })
+	@JsonView({ JsonViews.Article.class })
 	@OneToMany(mappedBy = "id.article")
 	private List<Avis> avis;
 
@@ -69,10 +70,10 @@ public class Article {
 		this.avis.add(avis);
 	}
 
-	public void supprimerAvis() {
-
+	public void supprimerAvis(Avis avis) {
+		this.avis.remove(avis);
 	}
-	
+
 	public Integer getStock() {
 		return stock;
 	}
@@ -161,6 +162,5 @@ public class Article {
 		Article other = (Article) obj;
 		return Objects.equals(id, other.id);
 	}
-
 
 }

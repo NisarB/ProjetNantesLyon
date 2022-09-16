@@ -21,21 +21,21 @@ import ProjetShopBoot.services.ListeArticleService;
 @RequestMapping("/api/liste-article")
 @CrossOrigin(origins = "*")
 public class ListeArticleRestController {
-	
-	@Autowired 
+
+	@Autowired
 	private ListeArticleService laService;
-	
+
 	@GetMapping("")
 	@JsonView(JsonViews.ListeArticle.class)
 	public List<ListeArticle> getListeArticle() {
 		return laService.getAll();
 	}
-	
+
 	@PostMapping("")
 	@JsonView(JsonViews.ListeArticle.class)
 	public ListeArticle create(@RequestBody ListeArticleRestModel listeArticleModel) {
-		return laService.create(listeArticleModel.getCommande(), listeArticleModel.getArticle(), listeArticleModel.getQuantite());
-
+		return laService.create(listeArticleModel.getCommande(), listeArticleModel.getArticle(),
+				listeArticleModel.getQuantite());
 	}
 
 }

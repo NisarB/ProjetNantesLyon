@@ -12,11 +12,13 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Embeddable
 public class ListeArticleKey implements Serializable {
+
 	@JsonView(JsonViews.ListeArticle.class)
 	@ManyToOne
 	@JoinColumn(name = "liste_article_commande_id", foreignKey = @ForeignKey(name = "liste_article_commande_id_fk"))
 	private Commande commande;
-	@JsonView(JsonViews.ListeArticle.class)
+
+	@JsonView({ JsonViews.ListeArticle.class, JsonViews.Commande.class })
 	@ManyToOne
 	@JoinColumn(name = "liste_article_article_id", foreignKey = @ForeignKey(name = "liste_article_article_id_fk"))
 	private Article article;

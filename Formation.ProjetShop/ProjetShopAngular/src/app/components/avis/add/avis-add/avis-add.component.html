@@ -1,0 +1,28 @@
+<div>
+    <form (ngSubmit)="save(avisForm)" #avisForm="ngForm">
+        <div class="form-outline mb-4">
+            <label class="form-label" for="avis-client">
+                <h4>Utilisateur :</h4>
+            </label>
+            <input type="text" id="avis-client" class="form-control" disabled
+                placeholder="{{client.prenom}} {{client.nom}}" />
+        </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="avis-texte">
+                <h4>Avis:</h4>
+            </label>
+            <textarea class="form-control" id="avis-texte" rows="4" required name="avis-texte" ngModel></textarea>
+        </div>
+
+        <div class="form-check d-flex mb-4">
+            <label class="rating-label"><strong>Note:</strong>
+                <input class="rating" max="5" oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)"
+                    step="0.5" type="range" required name="avis-note" ngModel value="0">
+            </label>
+        </div>
+
+        <button type="submit" class="mybtn btn btn-outline-dark btn-block mb-4">Envoyer Avis</button>
+    </form>
+
+</div>

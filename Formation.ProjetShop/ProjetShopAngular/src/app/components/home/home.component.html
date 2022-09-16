@@ -1,1 +1,54 @@
-<p>home works!</p>
+<div>
+    <div class="container-fluid">
+        <div class="hero-image row">
+            <div class="hero-text" align="right">
+                <h1 style="font-size:50px">Projet Shop</h1>
+                <p>Vendeur de ...</p>
+                <button class="btn btn-outline-light" routerLink="/catalogue/">Voir nos Produits</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row product-row-header">
+            <h2>Notre Catalogue(Categories)</h2>
+        </div>
+        <div class="row" style="text-align: -webkit-center;">
+            <div *ngFor=" let categorie of categorieEnum | keyvalue" class=" col product-item mb-5">
+                <div class="card" style="width: 14rem;">
+                    <img class="card-img-top" src="https://dummyimage.com/200/c4c4c4/fff" alt="Card image cap"
+                        style="height: 10vw">
+                    <div class="card-body">
+                        <h5 class="card-title">{{categorie.value}}</h5>
+                        <a routerLink="/catalogue/{{categorie.key}}" class="btn btn-outline-dark">Voir
+                            {{categorie.value}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row product-row-header">
+        <h2>Nos articles :</h2>
+    </div>
+    <div class="row product-grid">
+        <div *ngFor="let a of article" class="col-3 product-item mb-5">
+            <div class="card" style="width: 16rem;">
+                <img class="card-img-top" src="https://dummyimage.com/250/c4c4c4/fff" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{a.nom}}</h5>
+                    <span class="card-text">
+                        <h4>{{a.prix}} €</h4>
+                    </span>
+                    <a href="#" routerLink="/article/{{a.id}}" class="btn btn-outline-dark">Page Article</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <hr>
+    </div>
+
+</div>

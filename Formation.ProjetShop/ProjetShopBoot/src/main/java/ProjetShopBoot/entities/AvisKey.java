@@ -12,17 +12,22 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Embeddable
 public class AvisKey implements Serializable {
-	
+
 	@JsonView(JsonViews.Avis.class)
 	@ManyToOne
-	@JoinColumn(name="avis_client_id",foreignKey = @ForeignKey(name="avis_client_id_fk"))
+	@JoinColumn(name = "avis_client_id", foreignKey = @ForeignKey(name = "avis_client_id_fk"))
 	private Client client;
 	@JsonView(JsonViews.Avis.class)
 	@ManyToOne
-	@JoinColumn(name="avis_article_id",foreignKey = @ForeignKey(name="avis_Article_id_fk"))
+	@JoinColumn(name = "avis_article_id", foreignKey = @ForeignKey(name = "avis_Article_id_fk"))
 	private Article article;
 
 	public AvisKey() {
+	}
+
+	public AvisKey(AvisKey ak) {
+		this.client = ak.client;
+		this.article = ak.article;
 	}
 
 	public AvisKey(Client client, Article article) {

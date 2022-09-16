@@ -1,4 +1,41 @@
-<nav>
-  <a [routerLink]="['/home']" routerLinkActive="active" class="btn btn-link">home</a>
-  <a routerLink="/inscription" routerLinkActive="active" class="btn btn-link">inscription</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a href="#" class="navbar-brand text-white">ProjetShop</a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav">
+        <button class="btn btn-dark" routerLink="/home" routerLinkActive="active">Accueil</button>
+        <button class="btn btn-dark" routerLink="/catalogue" routerLinkActive="active">Catalogue</button>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <div *ngIf="!ActiveUser ">
+          <button class="btn btn-dark log" [routerLink]="['/login'] " routerLinkActive="active">
+            <span>Connexion</span>
+          </button>
+          <button class="btn btn-dark" routerLink="/inscription" routerLinkActive="active">
+            <span>Inscription</span>
+          </button>
+        </div>
+        <div class="navbar-nav ms-auto unlog" *ngIf="ActiveUser ">
+
+          <button *ngIf="ActiveUser.role == 'ROLE_ADMIN'" class="btn btn-dark" routerLink="/profile"
+            routerLinkActive=" active">
+            <span>Page Admin</span>
+          </button>
+
+          <button *ngIf="ActiveUser.role == 'ROLE_CLIENT'" class="btn btn-dark" routerLink="/profile"
+            routerLinkActive=" active">
+            <span>Mon Profil</span>
+          </button>
+          <button class="btn btn-dark" (click)="logout()" routerLinkActive=" active">
+            <span>Deconnexion</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <hr />
 </nav>

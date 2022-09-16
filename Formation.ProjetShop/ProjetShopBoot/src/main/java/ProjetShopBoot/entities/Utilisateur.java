@@ -1,27 +1,44 @@
 package ProjetShopBoot.entities;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-@MappedSuperclass
-public abstract class Utilisateur {
-	@JsonView(JsonViews.Avis.class)
+@Entity
+@Table(name = "Utilisateur")
+public class Utilisateur implements UserDetails {
+
+	@JsonView({ JsonViews.Avis.class, JsonViews.Base.class })
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUtilisateur")
 	private Long id;
 
+	@JsonView(JsonViews.Base.class)
 	@Column(nullable = false)
 	private String username;
-	
+
 	@Column(nullable = false)
 	private String password;
+
+	@Enumerated(EnumType.STRING)
+	@JsonView(JsonViews.Base.class)
+	private Role role;
 
 	public Utilisateur() {
 	}
@@ -70,6 +87,39 @@ public abstract class Utilisateur {
 			return false;
 		Utilisateur other = (Utilisateur) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Arrays.asList(new SimpleGrantedAuthority(role.toString()));
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 
 }

@@ -1,0 +1,63 @@
+<div class="container">
+    <div>
+        <div class="container mt-3">
+            <h2>Nos Articles</h2>
+            <div class="mt-4 p-5 bg-dark text-white rounded">
+                <h1>Recherche</h1>
+                <input class="form-control" id="myInput" type="text" placeholder="Article..."
+                    [(ngModel)]="SearchFilter">
+                <hr />
+                <button class="btn btn-outline-light mb-3" id='showFilters'>
+                    Afficher les Catégories
+                </button>
+                <div class="btn-toolbar filter-div " id="filters">
+                    <div class="btn-group">
+                        <div>
+                            <input type="radio" class="btn-check" name="btnradio" class="" id="btnradio"
+                                [(ngModel)]="CategorieFilter" [value]="" style="appearance: none;">
+                            <label class="btn btn-light" for="btnradio">Toutes</label>
+                        </div>
+                        <div *ngFor="let categorie of categorieEnum | keyvalue">
+                            <input type="radio" class="btn-check" name="btnradio" class="{{categorie.key}}"
+                                id="btnradio{{categorie.key}}" [(ngModel)]="CategorieFilter" [value]="categorie.key">
+                            <label class="btn btn-light" for="btnradio{{categorie.key}}">{{categorie.value}}</label>
+                        </div>
+                    </div>
+                    <div class="btn-group px-5">
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1">
+                        <label class="btn btn-light" for="btnradio1">Type 1</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" checked>
+                        <label class="btn btn-light" for="btnradio2">Type 2</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3">
+                        <label class="btn btn-light" for="btnradio3">Type 3</label>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <div class="row product-row-header">
+            <h2> Articles :</h2>
+        </div>
+        <div class="row product-grid grid">
+            <div *ngFor="let a of filterArticle" class="col-3 product-item mb-5">
+                <div class="card" style="width: 16rem;">
+                    <img class="card-img-top" src="https://dummyimage.com/250/c4c4c4/fff" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{a.nom}}</h5>
+                        <span class="card-text">
+                            <h4>{{a.prix}} €</h4>
+                        </span>
+                        <a href="#" routerLink="/article/{{a.id}}" class="btn btn-outline-dark">Page Article</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>

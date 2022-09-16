@@ -1,6 +1,7 @@
 package ProjetShopBoot.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,29 +18,29 @@ import ProjetShopBoot.repositories.AvisRepository;
 public class AvisService {
 	@Autowired
 	private AvisRepository avisRepo;
-	
+
 	@Autowired
 	private ArticleRepository articleRepo;
 
 	public Avis create(Avis avis) {
 		if (avis.getAvis() == null || avis.getId().getArticle() == null ||
-				avis.getId().getClient() == null ||avis.getAvis().isEmpty()) {
+				avis.getId().getClient() == null || avis.getAvis().isEmpty()) {
 			throw new AvisException();
 		}
 		return avisRepo.save(avis);
 	}
-	
-	public Avis create(Avis avis,Client client,Article article) {
+
+	public Avis create(Avis avis, Client client, Article article) {
 		if (avis.getAvis() == null || avis.getAvis().isEmpty() || article == null ||
-				client == null ) {
+				client == null) {
 			throw new AvisException();
 		}
 		AvisKey avisId = new AvisKey(client, article);
 		avis.setId(avisId);
 		return avisRepo.save(avis);
 	}
-	
-	public Avis create(String avisString,double note,Client client,Article article) {
+
+	public Avis create(String avisString, double note, Client client, Article article) {
 		if (avisString == null || avisString.isEmpty() || article == null ||
 				client == null) {
 			throw new AvisException();
@@ -51,7 +52,7 @@ public class AvisService {
 		avis.setId(avisId);
 		return avisRepo.save(avis);
 	}
-	
+
 	public void delete(Avis avis) {
 		avisRepo.delete(avis);
 	}
@@ -59,6 +60,22 @@ public class AvisService {
 	public List<Avis> getAll() {
 		return avisRepo.findAll();
 	}
-	
+
+	public Avis getById(AvisKey ak) {
+		return avisRepo.findById(ak).orElseThrow(AvisException::new);
+	}
+
+	public List<Avis> getByIdArticle(Article article) {
+		return avisRepo.findByIdArticle(article);
+	}
+
+	public Avis update(Avis avis) {
+
+		Avis avisBase = getById(avis.getId());
+		avisBase.setNote(avis.getNote());
+		avisBase.setAvis(avis.getAvis());
+
+		return avisRepo.save(avisBase);
+	}
+
 }
-	

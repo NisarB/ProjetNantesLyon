@@ -25,22 +25,27 @@ import com.fasterxml.jackson.annotation.JsonView;
 @SequenceGenerator(name = "seqCommande", sequenceName = "seq_commande", initialValue = 100, allocationSize = 1)
 
 public class Commande {
-	@JsonView(JsonViews.ListeArticle.class)
+
+	@JsonView({ JsonViews.ListeArticle.class, JsonViews.Base.class, JsonViews.Commande.class })
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCommande")
 	@Column(name = "id_commande")
 	private Long id;
 
+	@JsonView(JsonViews.Commande.class)
 	@Column(name = "date_commande")
 	private LocalDate date;
 
+	@JsonView(JsonViews.Commande.class)
 	@ManyToOne
 	@JoinColumn(name = "commande_id_client", foreignKey = @ForeignKey(name = "commande_id_client_fk"))
 	private Client client;
 
+	@JsonView(JsonViews.Commande.class)
 	@OneToMany(mappedBy = "id.commande")
 	private Set<ListeArticle> articles;
 
+	@JsonView(JsonViews.Commande.class)
 	@Embedded
 	private Facture facture;
 
@@ -50,7 +55,7 @@ public class Commande {
 	public Commande() {
 
 	}
-	
+
 	public Commande(Long id, LocalDate date, Client client, Set<ListeArticle> articles, Facture facture, long version) {
 		this.id = id;
 		this.date = date;

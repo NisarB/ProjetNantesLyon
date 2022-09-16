@@ -23,7 +23,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import ProjetShopBoot.entities.Client;
 import ProjetShopBoot.entities.JsonViews;
+import ProjetShopBoot.exceptions.ClientException;
 import ProjetShopBoot.services.ClientService;
+
 @RestController
 @RequestMapping("/api/client")
 @CrossOrigin(origins = "*")
@@ -31,7 +33,7 @@ public class ClientRestController {
 
 	@Autowired
 	private ClientService clientService;
-	
+
 	@GetMapping("/{id}")
 	@JsonView(JsonViews.Base.class)
 	public Client getById(@PathVariable Long id) {
@@ -53,6 +55,11 @@ public class ClientRestController {
 		return clientService.create(client);
 	}
 
+	@PostMapping("/{id}")
+	public Client getByIdWithCommandes(@PathVariable Long id) {
+		return clientService.getByIdWithCommandes(id);
+	}
+
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Base.class)
 	public Client update(@Valid @RequestBody Client client, BindingResult br, @PathVariable Long id) {
@@ -68,7 +75,4 @@ public class ClientRestController {
 	public void deleteById(@PathVariable Long id) {
 		clientService.deleteById(id);
 	}
-
 }
-
-

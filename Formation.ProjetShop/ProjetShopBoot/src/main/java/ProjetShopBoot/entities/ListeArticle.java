@@ -10,11 +10,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "liste_article")
 public class ListeArticle {
-	@JsonView(JsonViews.ListeArticle.class)
+
+	@JsonView({ JsonViews.ListeArticle.class, JsonViews.Commande.class })
 	@EmbeddedId
 	private ListeArticleKey id;
-	
-	@JsonView(JsonViews.ListeArticle.class)
+
+	@JsonView({ JsonViews.ListeArticle.class, JsonViews.Commande.class })
 	@Column(name = "liste_article_quantite")
 	private int quantite;
 

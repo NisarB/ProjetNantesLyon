@@ -1,0 +1,37 @@
+<div class="container">
+    <h1>Edition/Adition Article</h1>
+    <div class="form-group ">
+        <label for="id">ID:</label>
+        <input id="id" class="form-control" [(ngModel)]="article.id" readonly disabled />
+    </div>
+    <div class="form-group">
+        <label for="Categorie">Categorie:</label>
+        <select class="form-select" [(ngModel)]="article.categorie">
+            <option *ngFor="let categorie of categorieEnum | keyvalue" [value]="categorie.key">
+                {{categorie.value}}
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="nom">Nom:</label>
+        <input id="nom" class="form-control" [(ngModel)]="article.nom" />
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" class="form-control" [(ngModel)]="article.description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="prix">Prix:</label>
+        <input id="prix" class="form-control" [(ngModel)]="article.prix" type="number" />
+    </div>
+    <div class="form-group">
+        <label for="stock">Stock:</label>
+        <input id="stock" class="form-control" [(ngModel)]="article.stock" type="number" />
+    </div>
+    <hr>
+    <div class="form-group">
+        <button class="btn btn-dark " (click)="save()">Enregistrer</button>
+
+        <a routerLink="/article-list" routerLinkActive="active" class="btn btn-outline-dark">Annuler</a>
+    </div>
+</div>

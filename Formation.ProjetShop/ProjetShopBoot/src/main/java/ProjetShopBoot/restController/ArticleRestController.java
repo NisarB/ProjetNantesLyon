@@ -1,5 +1,6 @@
 package ProjetShopBoot.restController;
 
+import java.io.Console;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -30,22 +31,26 @@ import ProjetShopBoot.services.ArticleService;
 @RequestMapping("/api/article")
 @CrossOrigin(origins = "*")
 public class ArticleRestController {
-	
+
+	public ArticleRestController() {
+		System.out.println("TESST");
+	}
+
 	@Autowired
 	private ArticleService articleService;
-	
+
 	@GetMapping("")
 	@JsonView(JsonViews.Article.class)
 	public List<Article> getAll(Model model) {
 		return articleService.getAll();
 	}
-	
+
 	@GetMapping("/{id}")
 	@JsonView(JsonViews.Article.class)
 	public Article getById(@PathVariable Long id) {
 		return articleService.getById(id);
 	}
-	
+
 	@JsonView(JsonViews.Article.class)
 	@PostMapping("")
 	public Article create(@Valid @RequestBody Article article, BindingResult br) {
@@ -54,7 +59,7 @@ public class ArticleRestController {
 		}
 		return articleService.create(article);
 	}
-	
+
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Article.class)
 	public Article update(@PathVariable Long id, @Valid @RequestBody Article article, BindingResult br) {
@@ -66,10 +71,9 @@ public class ArticleRestController {
 	}
 
 	@DeleteMapping("/{id}")
-	@ResponseStatus(code=HttpStatus.NO_CONTENT)
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		articleService.deleteById(id);
 	}
-	
 
 }

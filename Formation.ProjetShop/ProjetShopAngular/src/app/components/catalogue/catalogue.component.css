@@ -1,0 +1,28 @@
+.product-row-header {
+    text-align: center;
+    padding: 50px;
+}
+
+a.fill-div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
+.card-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+
+#filters {
+    margin-top: 10px;
+    display: none;
+}

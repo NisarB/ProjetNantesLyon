@@ -1,0 +1,58 @@
+<div class="container mb-5 mt-5">
+
+  <div class="row" *ngIf="client.role == 'ROLE_ADMIN'">
+    <div class="col-6 mt-3">
+      <button class="btn btn-outline-dark w-100" routerLink="/article-list">
+        <h2 class="p-3"> Liste des Articles</h2>
+      </button>
+    </div>
+    <div class="col-6 mt-3 ">
+      <button class="btn btn-outline-dark w-100" routerLink="/clients">
+        <h2 class="p-3"> Liste des Utilisateurs</h2>
+      </button>
+    </div>
+    <div class="col-6 mt-5">
+      <button class="btn btn-outline-dark w-100" routerLink="/commande">
+        <h2 class="p-3"> Liste des Commandes</h2>
+      </button>
+    </div>
+  </div>
+  <div class="row" *ngIf="client.role == 'ROLE_CLIENT'">
+    <div class="col">
+      <h2>Vos Informations Personnelles:</h2>
+      <table class="table">
+        <tr>
+          <td> <b>Nom d'utilisateur:</b> {{ client.username }}</td>
+        </tr>
+        <tr>
+          <td><b>Nom:</b> {{ client.nom }}</td>
+        </tr>
+        <tr>
+          <td><b>Prenom:</b> {{ client.prenom }}</td>
+        </tr>
+        <tr>
+          <td><b>Mail:</b> {{ client.mail }}</td>
+        </tr>
+        <tr>
+          <td> <b>Ville:</b> {{ client.adresse?.ville }}</td>
+        <tr>
+          <td>
+            <button type="button " routerLink="edit/{{ client.id }}" class="btn btn-outline-dark mt-3">Modifier mes
+              Informations</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col">
+      <h2>Vos commandes effectués</h2>
+      <table class="table">
+        <tr *ngFor="let c of client.commande">
+          <td> Numero : {{ c.id }}</td>
+          <td> Date : {{ c.date }}</td>
+          <td> Facture : {{ c.facture }}</td>
+          <td> Articles : {{ c.listeArticle }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

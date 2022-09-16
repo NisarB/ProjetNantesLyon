@@ -1,0 +1,20 @@
+<div *ngFor="let a of avis" class="avis-block  border rounded border-dark p-3 m-3">
+
+    <div class="form-outline mb-4">
+        <h3>{{a.id.client?.prenom}} {{a.id.client?.nom}}</h3>
+    </div>
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="avis-texte">
+            <h4>Avis:</h4>
+        </label>
+        <textarea class="form-control" id="avis-texte" rows="4" name="avis-texte" readonly>{{a.avis}}</textarea>
+    </div>
+
+    <div class="ratings d-flex flex-row align-items-center">
+        <label class="rating-label"><strong>Note:</strong>
+            <input class="rating" max="5" step="0.5" style="--value:{{a.note}}" type="range" readonly>
+        </label>
+    </div>
+
+</div>

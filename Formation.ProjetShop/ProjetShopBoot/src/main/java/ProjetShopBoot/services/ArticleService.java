@@ -9,12 +9,16 @@ import ProjetShopBoot.entities.Article;
 import ProjetShopBoot.entities.Categorie;
 import ProjetShopBoot.exceptions.ArticleException;
 import ProjetShopBoot.repositories.ArticleRepository;
+import ProjetShopBoot.repositories.AvisRepository;
 
 @Service
 public class ArticleService {
 
 	@Autowired
 	ArticleRepository articleRepo;
+
+	@Autowired
+	AvisRepository avisRepo;
 
 	public Article create(Article article) {
 		if (article.getId() == null & article.getNom().isEmpty()) {
@@ -59,6 +63,10 @@ public class ArticleService {
 	}
 
 	public void deleteById(Long id) {
+		Article article = new Article();
+		article.setId(id);
+		avisRepo.deleteByIdArticle(article);
 		articleRepo.deleteById(id);
+
 	}
 }

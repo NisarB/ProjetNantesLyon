@@ -1,0 +1,24 @@
+<div class="container mb-5 mt-5">
+  <table class="table table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <th>id:</th>
+        <th>Date:</th>
+        <th>Client</th>
+        <th>Taxe</th>
+        <th>Remise</th>
+        <th>Moyen de Paiement</th>
+      </tr>
+    </thead>
+    <tbody class="tbody-dark">
+      <tr *ngFor="let c of commandes">
+        <td>{{ c.id }}</td>
+        <td>{{ c.date }}</td>
+        <td>{{ c.client!.nom}} {{ c.client!.prenom}}</td>
+        <td>{{ c.facture!.tva}}</td>
+        <td>{{ c.facture!.remise}}</td>
+        <td>{{ c.facture!.typePaiement}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

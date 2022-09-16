@@ -1,4 +1,5 @@
 package ProjetShopBoot.restController;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,35 +25,38 @@ import ProjetShopBoot.services.CommandeService;
 @RequestMapping("/api/commande")
 @CrossOrigin(origins = "*")
 public class CommandeRestController {
-	
+
 	@Autowired
 	private CommandeService commandeService;
-	
-	
+
 	@GetMapping("")
-	@JsonView(JsonViews.Base.class)
+	@JsonView(JsonViews.Commande.class)
 	public List<Commande> getAll() {
 		return commandeService.getAll();
 	}
+
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Base.class)
+	@JsonView(JsonViews.Commande.class)
 	public Commande getById(@PathVariable Long id) {
 		return commandeService.getById(id);
 	}
-	
-	@GetMapping("/client/{client}")
-	@JsonView(JsonViews.Base.class)
-	public List<Commande> getByClient(Client client){
+
+	@GetMapping("/client/{id}")
+	@JsonView(JsonViews.Commande.class)
+	public List<Commande> getByClientId(@PathVariable Long id) {
+		Client client = new Client();
+		client.setId(id);
 		return commandeService.getByClient(client);
-		
 	}
-    @PostMapping("")
-    @JsonView(JsonViews.Base.class)
-    public Commande create(@RequestBody Commande commande) {
-		return commandeService.create(commande); 	
-    }
-    
-    @DeleteMapping("/{id}")
+
+	@PostMapping("")
+	@JsonView(JsonViews.Commande.class)
+	public Commande create(@RequestBody Commande commande) {
+		return commandeService.create(commande);
+	}
+
+	@DeleteMapping("/{id}")
+	@JsonView(JsonViews.Commande.class)
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		commandeService.deleteById(id);
